@@ -2,10 +2,16 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-SQLITE = {
+SQLITE_PRINCIPAL = {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'principal.sqlite3',
     }
+
+# uncomment this section if u want to use more than one data base
+# SQLITE_HONEY = {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME':  'honey.sqlite3',
+#     }
 
 
 # YOU WILL NEED TO INSTALL psycopg2 TO USE THIS DB CONFIGURATION
