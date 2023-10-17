@@ -1,6 +1,9 @@
 from django.db import models
 from django.db.models.query import QuerySet
+from django.db.models.signals import pre_save
 from django.utils import timezone
+
+from apps.portfolio.utils import unique_slug_generator
 
 # Create your models here.
 class Category(models.Model):
@@ -36,7 +39,8 @@ class Project(models.Model):
         verbose_name='Slug',
         max_length=250,
         unique_for_date='published',
-        null=False,
+        null=True,
+        blank=True,
         unique=True
     )
 
@@ -83,3 +87,9 @@ class Project(models.Model):
 
     def __str__(self) -> str:
         return self.name
+    
+def slug_generator(sender, instance, *args, **kwargs):
+        if not instance.slug:
+            instance.slug = unique_slug_generator(instance)
+
+pre_save.connect(slug_generator, sender=Project)
