@@ -4,7 +4,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 SQLITE_PRINCIPAL = {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'principal.sqlite3',
+        'NAME': 'db.sqlite3',
     }
 
 # uncomment this section if u want to use more than one data base
